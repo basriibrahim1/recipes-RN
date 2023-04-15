@@ -1,4 +1,4 @@
-import { Image, Text, TouchableHighlight, View } from 'react-native';
+import { Text, TouchableHighlight, View } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 

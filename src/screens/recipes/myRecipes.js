@@ -1,5 +1,5 @@
 import React from 'react'
-import {Alert, Image, ScrollView, Text, TouchableHighlight, View } from 'react-native'
+import {Alert, Image, RefreshControl, ScrollView, Text, TouchableHighlight, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import MyRecipesAction from '../../storage/action/recipes/myRecipesAction'
 import { useEffect } from 'react'
@@ -12,14 +12,11 @@ const MyRecipe = () => {
     const navigation = useNavigation()
     const data = useSelector(state => state.myRecipes.data)
 
-    const token = useSelector(state => state.login.data.token)
-
-
+    const token = useSelector(state => state.login.data)
+    
     useEffect(() => {
-      if (token) {
-        dispatch(MyRecipesAction(token))
-      }
-    }, [dispatch, token])
+        dispatch(MyRecipesAction(token.token))
+    }, [dispatch])
 
 
    const handlePress = (id) => {
@@ -40,24 +37,30 @@ const MyRecipe = () => {
         { 
           text: 'Delete',
           onPress: () => 
-          dispatch(DeleteRecipesAction(id, token),
-          dispatch(MyRecipesAction(token))
+          dispatch(DeleteRecipesAction(id, token.token),
           ) 
         }
       ],
       { cancelable: true }
     );
   };
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    dispatch(MyRecipesAction(token.token)).then(() => setRefreshing(false))
+  }, []);
    
 
   return (
-    <View>
-        <ScrollView>
-            <Text style={{textAlign:'center', marginTop:50 ,fontSize:25, fontWeight:'700'}}>My Recipes</Text>
-            {!data ? navigation.navigate('Login')
-            :
+        !token ? navigation.navigate('Login') 
+        :
        
-            <View style={{marginHorizontal:20, marginVertical:30}}>
+        <ScrollView refreshControl={<RefreshControl  refreshing={refreshing} onRefresh={onRefresh}/>}>
+            <Text style={{textAlign:'center', marginTop:50 ,fontSize:25, fontWeight:'700'}}>My Recipes</Text>
+          
+          <View style={{marginHorizontal:20, marginVertical:30}}>
                 {data?.map ((item) => {
                     return (
                     <View style={{display:'flex', borderRadius:10, padding:10, flexDirection:'row', backgroundColor:'white', elevation:5, alignItems:'center', marginVertical:10}} key={item.id}>
@@ -81,11 +84,11 @@ const MyRecipe = () => {
                     </View>
                     )
                 })}
-              
             </View>
-              }
+         
+           
         </ScrollView> 
-    </View>
+      
   )
 }
 

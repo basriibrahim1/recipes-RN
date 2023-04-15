@@ -1,7 +1,14 @@
 import axios from "axios";
 import {BASE_URL} from '@env'
-import { ToastAndroid } from "react-native";
+import { Toast } from "native-base";
 
+
+const ToastLogin = (message) => {
+  return Toast.show({
+    title: message,
+    placement: 'top'
+  })
+}
 
 const DeleteRecipesAction = (id, token) => async (dispatch) => {
   try {
@@ -11,29 +18,14 @@ const DeleteRecipesAction = (id, token) => async (dispatch) => {
             "Authorization" : `Bearer ${token}`
         }
     })
-    ToastAndroid.showWithGravity(
-      'Loading....',
-      ToastAndroid.TOP,
-      ToastAndroid.LONG
-    )
     const menu = result.data.data
-    dispatch({
-      type: 'DELETE_RECIPES_SUCCESS', payload: menu} )
-      ToastAndroid.showWithGravity(
-        'Success....',
-        ToastAndroid.TOP,
-        ToastAndroid.LONG
-    )
+    dispatch({type: 'DELETE_RECIPES_SUCCESS', payload: menu})
+    ToastLogin('Recipes berhasil di delete, refresh untuk mendapatkan data yang baru ya!')
   } catch (error) {
     dispatch({
       type: 'DELETE_RECIPES_FAILURE',
       payload: error.message
     })
-    ToastAndroid.showWithGravity(
-      'Failed....',
-      ToastAndroid.TOP,
-      ToastAndroid.LONG
-  )
   }
 }
 

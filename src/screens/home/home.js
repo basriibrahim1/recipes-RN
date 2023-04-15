@@ -37,45 +37,41 @@ const Home = () => {
 
 
         <View style={{marginLeft:20, marginTop:25, display:'flex'}}>
-        <View style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-                    <Text style={{fontSize:20, fontWeight:'500', color:'black'}}>Popular Recipes</Text>
-                    <Text style={{fontSize:15, fontWeight:'400', color:'blue', textAlign:'right', width:'60%'}}>See more</Text>
-        </View>
-    {recipes.isLoading ? <Text>Loading...</Text> : 
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{overflow:'hidden'}}>
-        {recipes.data.slice(0,3).map((item) => {
-            return (  
-                    <View style={{flexDirection:'row', marginHorizontal:5}} key={item.id}>
-                        <Image style={{width:250, height:150, borderRadius:10, marginTop:20, position:'relative'}} source={{uri: `${item.photo}`}}/>
-                        <Text style={{position:'absolute', top:120, color:'white', fontSize:15, fontWeight:'800', width:100, left:10, overflow:'hidden'}}>{item.title}</Text>
-                    </View>
-            )
-        })}
-        </ScrollView>}
-       
+            <Text style={{fontSize:25, fontWeight:'500', color:'black', borderBottomWidth:2, borderBottomColor:'grey', width:'50%'}}>Popular Recipes</Text>
+            {recipes.isLoading ? <Text>Loading...</Text> : 
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{overflow:'hidden'}}>
+                    {recipes.data.slice(0,3).map((item) => {
+                        return (  
+                            <View style={{flexDirection:'row', marginHorizontal:5}} key={item.id}>
+                                <Image style={{width:250, height:150, borderRadius:10, marginTop:20, position:'relative', elevation:5}} source={{uri: `${item.photo}`}}/>
+                                <Text style={{position:'absolute', top:120, color:'white', fontSize:15, fontWeight:'800', width:100, left:10, overflow:'hidden'}}>{item.title}</Text>
+                            </View>
+                        )
+                    })}
+                </ScrollView>}
         </View>
        
 
-        <View style={{paddingHorizontal:30, marginTop:15}}>
-            <Text style={{fontSize:20, fontWeight:'500', color:'black'}}>New Recipes</Text>
+        <View style={{paddingHorizontal:30, marginTop:50}}>
+            <Text style={{fontSize:25, fontWeight:'500', color:'black', borderBottomWidth:2, borderBottomColor:'grey', width:'50%'}}>Category</Text>
             <View style={{display:'flex', flexDirection:'row', textAlign:'center', alignItems:'center',}}>
                 <View style={{alignItems:'center'}}>
-                    <DrinkName name='drink' size={70} color='black'/>
+                    <DrinkName name='drink' size={30} color='black'/>
                     <Text style={{color:'black', fontSize:15, fontWeight:'600', marginTop:5}}>Isotonic</Text>
                 </View>
-                <View style={{alignItems:'center', marginLeft:20, marginBottom:30}}>
-                    <Image style={{width:100, height:100, objectFit:'contain'}} source={Soup}/>
+                <View style={{alignItems:'center', marginLeft:20, marginBottom:17}}>
+                    <Image style={{width:50, height:50, objectFit:'cover'}} source={Soup}/>
                     <Text style={{color:'black', fontSize:15, fontWeight:'600', marginTop:5}}>Main Course</Text>
                 </View>
             </View>
         </View>
 
 
-        <ScrollView style={{ paddingLeft:30, marginTop:15}}>
+        <ScrollView style={{ paddingLeft:30, marginTop:30}}>
             <View style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-                <Text style={{fontSize:20, fontWeight:'500', color:'black'}}>Popular For You</Text>
+                <Text style={{fontSize:25, fontWeight:'500', color:'black', borderBottomWidth:2, borderBottomColor:'grey'}}>Popular For You</Text>
                 <TouchableWithoutFeedback onPress={() => navigation.navigate('Popular')}>
-                    <Text style={{fontSize:15, fontWeight:'400', color:'blue', textAlign:'right', width:'60%'}}>See more</Text>
+                    <Text style={{fontSize:15, fontWeight:'400', color:'blue', textAlign:'right', width:'50%'}}>See more</Text>
                 </TouchableWithoutFeedback>
             </View>
 
@@ -87,7 +83,7 @@ const Home = () => {
                         <View style={{marginHorizontal:5}}>
                             <Image style={{width:250, height:150, borderRadius:10, marginTop:20, position:'relative'}} source={{uri: `${item.photo}`}}/>
                             <View style={styles.popular}>
-                                <Text numberOfLines={1} style={{color:'black', fontSize:15, fontWeight:'800'}}>{item.title}</Text>
+                                <Text numberOfLines={1} style={{color:'black', fontSize:15, fontWeight:'700', marginTop:10}}>{item.title}</Text>
                                 <Text numberOfLines={1} style={{color:'black', overflow:'hidden', marginBottom:10, marginTop:10, height:20, width:'100%'}}>{item.ingredients}</Text>
                             </View>
                         </View>
@@ -131,7 +127,7 @@ const styles = StyleSheet.create({
         opacity: 0.6
     },
     popular: {
-        paddingLeft:10,
+        paddingLeft:15,
         position:'absolute', 
         top:120, 
         borderWidth:1, 

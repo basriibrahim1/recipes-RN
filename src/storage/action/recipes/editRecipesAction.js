@@ -1,7 +1,14 @@
 import axios from "axios";
 import {BASE_URL} from '@env'
-import { ToastAndroid } from "react-native";
+import { Toast } from "native-base";
 
+
+const ToastLogin = (message) => {
+  return Toast.show({
+    title: message,
+    placement: 'top'
+  })
+}
 
 const EditRecipesAction = (id, token, formData, navigation) => async (dispatch) => {
   try {
@@ -11,31 +18,18 @@ const EditRecipesAction = (id, token, formData, navigation) => async (dispatch) 
             "Content-Type": "multipart/form-data",
             "Authorization" : `Bearer ${token}`
         }
-    })
-    ToastAndroid.showWithGravity(
-      'Loading....',
-      ToastAndroid.TOP,
-      ToastAndroid.LONG
-    )
-    const menu = result.data
+      }, ToastLogin('Tunggu bentar ya lagi loading..'))
+      const menu = result.data
+    
     dispatch({
-      type: 'EDIT_RECIPES_SUCCESS', payload: menu})
-      ToastAndroid.showWithGravity(
-        'Success....',
-        ToastAndroid.TOP,
-        ToastAndroid.LONG
-    )
-      navigation.navigate('Recipes', {key: new Date().getTime()})
+    type: 'EDIT_RECIPES_SUCCESS', payload: menu})
+    navigation.navigate('Recipes')
   } catch (error) {
     dispatch({
       type: 'EDIT_RECIPES_FAILURE',
       payload: error.message
-    })
-    ToastAndroid.showWithGravity(
-      'Failed....',
-      ToastAndroid.TOP,
-      ToastAndroid.LONG
-  )
+    }, ToastLogin('Yah.. gagal, coba lagi ya!'))
+    
   }
 }
 

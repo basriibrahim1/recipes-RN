@@ -1,16 +1,39 @@
 import ImagePicker from 'react-native-image-picker';
 
-const openCamera = () => {
-    const options = {
-      mediaType: 'photo',
-      quality: 1,
-    };
-  
-    ImagePicker.launchCamera(options, (response) => {
+const openCamera = async () => {
+      try{
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,{
+            title: "App Camera Permission",
+            message: "App Needs Camera Access",
+            buttonPositive:"Ok",
+            buttonNegative:"Cancel",
+            buttonNeutral:"ask me later"
+          })
+          if(granted === PermissionsAndroid.RESULTS.GRANTED){
+            console.log("access camera success")
+            cameraLaunch()
+          } else {
+            console.log("access camera failed")
+            console.log(PermissionsAndroid.RESULTS.GRANTED)
+          }
+      }catch(err){
+        console.log(err)
+      }
+    }
 
+    const cameraLaunch = () => {
+      const options = {
+        mediaType: 'photo',
+        quality: 1,
+      };
+
+      ImagePicker.launchCamera(options, (response) => {
       response.didCancel && console.log('User cancelled')
       response.error && console.log('ImagePicker Error: ', response.error);
-    });
-  }
+      });
+    }
+  
+    
 
 export default openCamera

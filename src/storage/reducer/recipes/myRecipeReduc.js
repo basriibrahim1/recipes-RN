@@ -1,5 +1,5 @@
 const initialState = {
-    data: [],
+    data: null,
     isError: null,
     isLoading: false,
     isSuccess: true
@@ -11,7 +11,7 @@ const initialState = {
         case "MY_RECIPES_REQUEST" : 
         return {
             ...state,
-            data: [],
+            data: null,
             isError: null,
             isLoading: true,
             isSuccess: false
@@ -27,7 +27,7 @@ const initialState = {
         case 'MY_RECIPES_FAILURE' :
         return {
             ...state,
-            data: [],
+            data: null,
             isError: action.payload,
             isLoading: false,
             isSuccess: false

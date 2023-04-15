@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native'
 const InsertRecipes = () => {
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const [select, setSelect] = useState()
+  const [select, setSelect] = useState(1)
   const [imageGallery, setImageGallery] = useState(null)
   const [title, setTitle] = useState('')
   const [ingredients, setIngredients] = useState('')

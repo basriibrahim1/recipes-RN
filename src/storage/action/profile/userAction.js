@@ -1,14 +1,11 @@
 import axios from "axios";
 import {BASE_URL} from '@env'
-import { useSelector } from "react-redux";
 
 
-const UserAction = () => async (dispatch) => {
+const UserAction = (token) => async (dispatch) => {
   try {
-    const token = useSelector(state => state.login.data.token)
-    console.log(token)
     dispatch({type : 'USER_REQUEST'})
-    const result = await axios.delete(`${BASE_URL}/users/users`, {
+    const result = await axios.get(`${BASE_URL}/users/users`, {
         headers: {
             "Authorization" : `Bearer ${token}`
         }
