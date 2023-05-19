@@ -28,7 +28,7 @@
     </li>
     <li><a href="#screenshots">Screenshots</a></li>
     <li><a href="#related-project">Related Project</a></li>
-    <li><a href="#our-team">Our Team</a></li>
+    <li><a href="#author">Author</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
