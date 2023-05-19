@@ -1,7 +1,7 @@
 <h1 align="center">Recipes Club Application</h1>
 
 <p align="center">
-  <img height="150" src="https://github.com/basriibrahim1/recipes-RN/blob/main/src/ss/logo.png"  />
+  <img height="150" src="https://github.com/basriibrahim1/recipes-RN/blob/main/src/ss/logo.PNG"  />
 </p>
  <p align="center">
     Find your best recipes everyday
@@ -95,8 +95,8 @@ npm install
 
 ## Related Project
 
-- [`BACKEND Ankasa Flight`](https://github.com/basriibrahim1/ankasa-backend)
-- [`FRONTEND Ankasa Flight`](https://github.com/basriibrahim1/ankasa-fe-next)
+- [`BACKEND Recipes Club`](https://github.com/basriibrahim1/recipes-backend)
+- [`FRONTEND Recipes Club Website`](https://github.com/basriibrahim1/recipes-frontend-website)
 
 
 ## Author
