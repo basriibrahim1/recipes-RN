@@ -30,10 +30,10 @@ const DetailRecipes = () => {
 
                 <View key={item.id}>
             <Image source={{uri : `${item.photo}`}} style={{width:'100%', height:400, position:'absolute',resizeMode:'cover'}} key={item.id}/>
-            <View style={{display:'flex', flexDirection:'row', height:350, alignItems:'flex-end', justifyContent:'space-around', width:'100%'}}>
-                <View style={{width:'70%', marginLeft:20}}>
-                    <Text style={{fontSize:30, color:'white', backgroundColor:'rgba(0,0,0,0.5)'}}>{item.title}</Text>
-                    <Text style={{color:'white', fontSize: 20, backgroundColor:'rgba(0,0,0,0.5)'}}>By {item.creator}</Text>
+            <View style={{display:'flex', flexDirection:'row', height:350, alignItems:'flex-end', justifyContent:'space-around', width:'100%' }}>
+                <View style={{width:'70%', marginLeft:5, paddingLeft:20, paddingVertical:10, backgroundColor:'rgba(0,0,0,0.5)', borderRadius:10}}>
+                    <Text style={{fontSize:30, color:'white'}}>{item.title}</Text>
+                    <Text style={{color:'white', fontSize: 20}}>By {item.creator}</Text>
                 </View>
                 <View style={{display:'flex', flexDirection:'row', marginRight:20}}>
                     <View>
@@ -50,7 +50,7 @@ const DetailRecipes = () => {
             </View>
             <View style={{backgroundColor:'white', height:400, borderTopLeftRadius:10, borderTopRightRadius:10, marginHorizontal:5, marginTop:10}}>
                 <Text style={{color:'black', fontSize:20, marginLeft:30, marginTop:15}}>Ingredients</Text>
-                <Text style={{backgroundColor:'#FAF7ED', marginHorizontal:30, marginTop:25, fontSize:15, paddingLeft:20}}>
+                <Text style={{backgroundColor:'#FAF7ED', marginHorizontal:30, marginTop:25, fontSize:15, paddingLeft:20, paddingVertical:15, elevation:5, borderRadius:10}}>
                     {item.ingredients}
                 </Text>
             </View>
